@@ -1,0 +1,28 @@
+- name: Main Ansible playbook.
+  hosts: localhost
+  become: true
+
+  vars:
+    home: "{{ lookup('env', 'HOME') }}"
+    packages_to_install:
+      - stow
+
+  tasks:
+
+    # basic package installs
+    - include: tasks/packages.yml
+
+    # gitconfig setup
+    - include: tasks/gitconfig.yml
+
+    # tmux setup
+    - include: tasks/tmux.yml
+
+    # zsh setup
+    - include: tasks/zsh.yml
+
+    # neovim setup
+    - include: tasks/neovim.yml
+
+    # stow dotfiles
+    - include: tasks/dotfiles.yml

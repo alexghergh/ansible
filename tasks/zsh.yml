@@ -1,0 +1,23 @@
+- name: Ensure .zshrc doesn't exist already.
+  file:
+    path: "{{ home }}/.zshrc"
+    state: absent
+
+- name: Ensure .zprofile doesn't exist already.
+  file:
+    path: "{{ home }}/.zprofile"
+    state: absent
+
+# Arch Linux
+- name: Ensure the zsh package is installed (Archlinux).
+  community.general.pacman:
+    name: zsh
+    state: latest
+  when: ansible_distribution == "Archlinux"
+
+# Ubuntu / Debian
+- name: Ensure the zsh package is installed (Ubuntu / Debian).
+  apt:
+    name: zsh
+    state: latest
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"

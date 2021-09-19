@@ -1,0 +1,29 @@
+# Arch Linux
+# this step is not needed initially, as we already do this when installing git and ansible as a dependency
+# however keep this for idempotency
+- name: Update and upgrade the system (Archlinux). Equivalent to "pacman -Syu".
+  community.general.pacman:
+    update_cache: yes
+    upgrade: yes
+  when: ansible_distribution == "Archlinux"
+
+- name: Ensure basic utilities are installed (Archlinux).
+  community.general.pacman:
+    name: "{{ packages_to_install }}"
+    state: latest
+  when: ansible_distribution == "Archlinux"
+
+# Ubuntu / Debian
+# this step is not needed initially, as we already do this when installing git and ansible as a dependency
+# however keep this for idempotency
+- name: Update and upgrade the system (Ubuntu / Debian)
+  apt:
+    update_cache: yes
+    upgrade: yes
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+- name: Ensure basic utilities are installed (Ubuntu / Debian)
+  apt:
+    name: "{{ packages_to_install }}"
+    state: latest
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"

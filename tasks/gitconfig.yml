@@ -1,0 +1,4 @@
+- name: Ensure .gitconfig file does not exist already.
+  file:
+    path: "{{ home }}/.gitconfig"
+    state: absent

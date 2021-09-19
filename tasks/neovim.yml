@@ -1,0 +1,11 @@
+- name: Ensure .config/nvim/ doesn't exist already.
+  file:
+    path: "{{ home }}/.config/nvim/"
+    state: absent
+
+# Arch Linux
+- name: Ensure the neovim package is installed (Archlinux).
+  community.general.pacman:
+    name: neovim
+    state: latest
+  when: ansible_distribution == "Archlinux"

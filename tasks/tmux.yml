@@ -1,0 +1,23 @@
+- name: Ensure .tmux/ doesn't exist already.
+  file:
+    path: "{{ home }}/.tmux/"
+    state: absent
+
+- name: Ensure .tmux.conf doesn't exist already.
+  file:
+    path: "{{ home }}/.tmux.conf"
+    state: absent
+
+# Arch Linux
+- name: Ensure the tmux package is installed (Archlinux).
+  community.general.pacman:
+    name: tmux
+    state: latest
+  when: ansible_distribution == "Archlinux"
+
+# Ubuntu / Debian
+- name: Ensure the tmux package is installed (Ubuntu / Debian).
+  apt:
+    name: tmux
+    state: latest
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
