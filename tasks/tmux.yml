@@ -10,7 +10,7 @@
 
 # Arch Linux
 - name: Ensure the tmux package is installed (Archlinux).
-  community.general.pacman:
+  pacman:
     name: tmux
     state: latest
   when: ansible_distribution == "Archlinux"

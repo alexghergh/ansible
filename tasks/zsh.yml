@@ -10,7 +10,7 @@
 
 # Arch Linux
 - name: Ensure the zsh package is installed (Archlinux).
-  community.general.pacman:
+  pacman:
     name: zsh
     state: latest
   when: ansible_distribution == "Archlinux"
