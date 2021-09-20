@@ -3,6 +3,7 @@
   become: true
 
   vars:
+    user: "{{ lookup('env', 'USER') }}"
     home: "{{ lookup('env', 'HOME') }}"
     packages_to_install:
       - stow
