@@ -5,6 +5,7 @@
     dest: "{{ home }}/.dotfiles"
 
 - name: Ensure dotfiles repo is stowed.
+  become_user: "{{ user }}"
   command:
     chdir: "{{ home }}/.dotfiles"
     cmd: "sh install"
