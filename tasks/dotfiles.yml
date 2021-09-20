@@ -1,9 +1,9 @@
 - Ensure dotfiles repo is present on the system.
-  ansible.builtin.git:
+  git:
     repo: "https://github.com/alexghergh/dotfiles"
     dest: "{{ home }}/.dotfiles"
 
 - Ensure dotfiles repo is stowed:
-  ansible.builtin.command:
+  command:
     chdir: "{{ home }}/.dotfiles"
     cmd: "sh install"
