@@ -1,9 +1,9 @@
-- Ensure dotfiles repo is present on the system.
+- name: Ensure dotfiles repo is present on the system.
   git:
     repo: "https://github.com/alexghergh/dotfiles"
     dest: "{{ home }}/.dotfiles"
 
-- Ensure dotfiles repo is stowed:
+- name: Ensure dotfiles repo is stowed.
   command:
     chdir: "{{ home }}/.dotfiles"
     cmd: "sh install"
