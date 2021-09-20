@@ -21,7 +21,7 @@ if [ "$os_id" = 'arch' ]; then
 elif [ "$os_id" = 'ubuntu' ]; then
     sudo "$(which apt-get)" update --yes
     sudo "$(which apt-get)" upgrade --yes
-    sudo "$(which apt-get)" install python-apt python3-apt git ansible-core --yes
+    sudo "$(which apt-get)" install python-apt python3-apt git ansible --yes
 fi
 
 # pull the ansible repo
