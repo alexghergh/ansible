@@ -65,5 +65,5 @@
 - name: Install the other tmux plugins.
   become_user: "{{ user }}"
   command:
-    cmd: "sh install_plugins.sh"
+    cmd: "./install_plugins.sh"
     chdir: "{{ home }}/.config/tmux/plugins/tpm/scripts"
