@@ -51,6 +51,11 @@
     chdir: "{{ home }}/tmux-git"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
+- name: Stow the tmux configs.
+  command:
+    cmd: 'stow --restow --verbose --dir="{{ home }}/.dotfiles" --target="{{ home }}" tmux'
+    chdir: "{{ home }}/.dotfiles"
+
 - name: Install tmux plugin manager.
   become_user: "{{ user }}"
   git:
