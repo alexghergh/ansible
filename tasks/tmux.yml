@@ -50,3 +50,15 @@
     cmd: "make install"
     chdir: "{{ home }}/tmux-git"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+- name: Install tmux plugin manager.
+  become_user: "{{ user }}"
+  git:
+    repo: "https://github.com/tmux-plugins/tpm"
+    dest: "{{ home }}/.config/tmux/plugins/tpm"
+
+- name: Install the other tmux plugins.
+  become_user: "{{ user }}"
+  command:
+    cmd: "sh install_plugins.sh"
+    chdir: "{{ home }}/.config/tmux/plugins/tpm/scripts"
