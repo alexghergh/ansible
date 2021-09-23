@@ -1,6 +1,6 @@
 - name: Main Ansible playbook.
   hosts: localhost
-  become: false
+  become: true
 
   vars:
 
