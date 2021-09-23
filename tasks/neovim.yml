@@ -13,7 +13,7 @@
 # Ubuntu / Debian
 - name: Ensure neovim dependencies are installed (Ubuntu / Debian).
   apt:
-    name: [ 'python-neovim', 'python3-neovim', 'ninja-build', 'gettext', 'libtool', 'libtool-bin', 'autoconf', 'automake', 'cmake', 'g++', 'pkg-config', 'unzip', 'curl' ]
+    name: [ 'python3-neovim', 'ninja-build', 'gettext', 'libtool', 'libtool-bin', 'autoconf', 'automake', 'cmake', 'g++', 'pkg-config', 'unzip', 'curl' ]
     state: latest
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
