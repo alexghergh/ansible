@@ -9,3 +9,39 @@
     name: neovim
     state: latest
   when: ansible_distribution == "Archlinux"
+
+# Ubuntu / Debian
+- name: Ensure neovim dependencies are installed (Ubuntu / Debian).
+  apt:
+    name: [ 'python-neovim', 'python3-neovim', 'ninja-build', 'gettext', 'libtool', 'libtool-bin', 'autoconf', 'automake', 'cmake', 'g++', 'pkg-config', 'unzip', 'curl' ]
+    state: latest
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+# Ubuntu / Debian
+- name: Clone the neovim git repo (Ubuntu / Debian).
+  become_user: "{{ user }}"
+  git:
+    repo: "https://github.com/neovim/neovim"
+    dest: "{{ home }}/neovim-git"
+    version: "v0.5.0"
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+# Ubuntu / Debian
+- name: Configure and install neovim part I (Ubuntu / Debian).
+  become_user: "{{ user }}"
+  command:
+    cmd: "make CMAKE_BUILD_TYPE=Release"
+    chdir: "{{ home }}/neovim-git"
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+# Ubuntu / Debian
+- name: Configure and install neovim part II (Ubuntu / Debian).
+  command:
+    cmd: "make install"
+    chdir: "{{ home }}/neovim-git"
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+- name: Stow the neovim configs.
+  command:
+    cmd: 'stow --restow --verbose --dir="{{ home }}/.dotfiles" --target="{{ home }}" vim'
+    chdir: "{{ home }}/.dotfiles"

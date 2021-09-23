@@ -17,13 +17,15 @@
     state: latest
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
-- name: Download tmux from git (Ubuntu / Debian).
+# Ubuntu / Debian
+- name: Clone the tmux git repo (Ubuntu / Debian).
   become_user: "{{ user }}"
   git:
     repo: "https://github.com/tmux/tmux"
     dest: "{{ home }}/tmux-git"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
+# Ubuntu / Debian
 - name: Configure and install tmux part I (Ubuntu / Debian).
   become_user: "{{ user }}"
   command:
@@ -31,6 +33,7 @@
     chdir: "{{ home }}/tmux-git"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
+# Ubuntu / Debian
 - name: Configure and install tmux part II (Ubuntu / Debian).
   become_user: "{{ user }}"
   command:
@@ -38,6 +41,7 @@
     chdir: "{{ home }}/tmux-git"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
+# Ubuntu / Debian
 - name: Configure and install tmux part III (Ubuntu / Debian).
   become_user: "{{ user }}"
   command:
@@ -45,6 +49,7 @@
     chdir: "{{ home }}/tmux-git"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
+# Ubuntu / Debian
 - name: Configure and install tmux part IV (Ubuntu / Debian).
   command:
     cmd: "make install"
