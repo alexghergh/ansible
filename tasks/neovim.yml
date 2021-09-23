@@ -13,7 +13,7 @@
 # Ubuntu / Debian
 - name: Ensure neovim dependencies are installed (Ubuntu / Debian).
   apt:
-    name: [ 'python3-neovim', 'python3-pip', 'ninja-build', 'gettext', 'libtool', 'libtool-bin', 'autoconf', 'automake', 'cmake', 'g++', 'pkg-config', 'unzip', 'curl' ]
+    name: [ 'python3-pip', 'ninja-build', 'gettext', 'libtool', 'libtool-bin', 'autoconf', 'automake', 'cmake', 'g++', 'pkg-config', 'unzip', 'curl' ]
     state: latest
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
@@ -23,7 +23,7 @@
   git:
     repo: "https://github.com/neovim/neovim"
     dest: "{{ home }}/neovim-git"
-    version: "v0.5.0"
+    version: "stable"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
 # Ubuntu / Debian
@@ -61,6 +61,7 @@
 # install nodejs
 # install ccls
 # install tree-sitter
+# install luajit?
 
 - name: Stow the neovim configs.
   command:

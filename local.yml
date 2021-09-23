@@ -14,8 +14,21 @@
     xdg_data: "{{ lookup('env', 'XDG_DATA_HOME') | default('~/.local/share', true) }}"
     xdg_cache: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache', true) }}"
 
-    packages_to_install:
+    packages_to_install_arch:
       - stow
+      - nodejs-lts-fermium
+      - pyenv
+      - base-devel
+      - openssl
+      - xz
+      - zlib
+      - curl
+
+    packages_to_install_ubuntu:
+      - stow
+      - nodejs
+      - build-essential
+      - curl
 
   tasks:
 
@@ -31,6 +44,9 @@
 
     # zsh setup
     - include: tasks/zsh.yml
+
+    # pyenv setup
+    - include: tasks/pyenv.yml
 
     # gitconfig setup
     - include: tasks/gitconfig.yml
