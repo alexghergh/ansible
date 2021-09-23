@@ -1,6 +1,6 @@
 - name: Ensure ~/.config/tmux/ doesn't exist already.
   file:
-    path: "{{ home }}/.config/tmux/"
+    path: "{{ xdg_config }}/tmux/"
     state: absent
 
 # Arch Linux
@@ -60,10 +60,10 @@
   become_user: "{{ user }}"
   git:
     repo: "https://github.com/tmux-plugins/tpm"
-    dest: "{{ home }}/.config/tmux/plugins/tpm"
+    dest: "{{ xdg_config }}/tmux/plugins/tpm"
 
 - name: Install the other tmux plugins.
   become_user: "{{ user }}"
   command:
     cmd: "./install_plugins.sh"
-    chdir: "{{ home }}/.config/tmux/plugins/tpm/scripts"
+    chdir: "{{ xdg_config }}/tmux/plugins/tpm/scripts"

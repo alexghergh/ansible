@@ -8,6 +8,11 @@
     path: "{{ home }}/.zprofile"
     state: absent
 
+- name: Ensure .zshenv doesn't exist already.
+  file:
+    path: "{{ home }}/.zshenv"
+    state: absent
+
 # Arch Linux
 - name: Ensure the zsh package is installed (Archlinux).
   pacman:
@@ -21,3 +26,8 @@
     name: zsh
     state: latest
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+- name: Stow the zsh configs.
+  command:
+    cmd: 'stow --restow --verbose --dir="{{ home }}/.dotfiles" --target="{{ home }}" zsh'
+    chdir: "{{ home }}/.dotfiles"

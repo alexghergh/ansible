@@ -2,3 +2,8 @@
   file:
     path: "{{ home }}/.gitconfig"
     state: absent
+
+- name: Stow the git configs.
+  command:
+    cmd: 'stow --restow --verbose --dir="{{ home }}/.dotfiles" --target="{{ home }}" git'
+    chdir: "{{ home }}/.dotfiles"

@@ -1,6 +1,6 @@
 - name: Ensure .config/nvim/ doesn't exist already.
   file:
-    path: "{{ home }}/.config/nvim/"
+    path: "{{ xdg_config }}/nvim/"
     state: absent
 
 # Arch Linux

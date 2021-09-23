@@ -1,17 +1,23 @@
 - name: Main Ansible playbook.
   hosts: localhost
-  become: true
+  become: false
 
   vars:
+
+    # just a sanity-check
     user: "{{ lookup('env', 'USER') }}"
     home: "{{ lookup('env', 'HOME') }}"
+
+    # xdg base dirs spec (these will be sourced anyway later in .zshrc, but we need them now)
+    xdg_config: "{{ lookup('env', 'XDG_CONFIG_HOME') | default('~/.config', true) }}"
+    # xdg_config_full_path: "{{ xdg_config | expanduser }}"
+    xdg_data: "{{ lookup('env', 'XDG_DATA_HOME') | default('~/.local/share', true) }}"
+    xdg_cache: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache', true) }}"
+
     packages_to_install:
       - stow
 
   tasks:
-
-    # basic package installs
-    - include: tasks/packages.yml
 
     # download the dotfiles repo
     - name: Ensure dotfiles repo is present on the system.
@@ -20,14 +26,17 @@
         repo: "https://github.com/alexghergh/dotfiles"
         dest: "{{ home }}/.dotfiles"
 
+    # basic package installs
+    - include: tasks/packages.yml
+
+    # zsh setup
+    - include: tasks/zsh.yml
+
     # gitconfig setup
     - include: tasks/gitconfig.yml
 
     # tmux setup
     - include: tasks/tmux.yml
-
-    # zsh setup
-    - include: tasks/zsh.yml
 
     # neovim setup
     - include: tasks/neovim.yml
