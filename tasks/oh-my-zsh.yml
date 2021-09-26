@@ -1,0 +1,8 @@
+- name: Ensure .oh-my-zsh doesn't exist already.
+  file:
+    path: "{{ home }}/.oh-my-zsh/"
+    state: absent
+
+- name: Ensure oh-my-zsh is installed and configured.
+  become_user: "{{ user }}"
+  shell: 'sh -c "KEEP_ZSHRC=yes $(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended'

@@ -18,7 +18,7 @@
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
 # Ubuntu / Debian
-- name: Clone the tmux git repo (Ubuntu / Debian).
+- name: Ensure the tmux git repo is present (Ubuntu / Debian).
   become_user: "{{ user }}"
   git:
     repo: "https://github.com/tmux/tmux"
@@ -57,17 +57,18 @@
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
 - name: Stow the tmux configs.
+  become_user: "{{ user }}"
   command:
     cmd: 'stow --restow --verbose --dir="{{ home }}/.dotfiles" --target="{{ home }}" tmux'
     chdir: "{{ home }}/.dotfiles"
 
-- name: Install tmux plugin manager.
+- name: Ensure tmux plugin manager is installed.
   become_user: "{{ user }}"
   git:
     repo: "https://github.com/tmux-plugins/tpm"
     dest: "{{ xdg_config }}/tmux/plugins/tpm"
 
-- name: Install the other tmux plugins.
+- name: Ensure the other tmux plugins are installed.
   become_user: "{{ user }}"
   command:
     cmd: "./install_plugins.sh"

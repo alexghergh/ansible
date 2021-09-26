@@ -32,7 +32,3 @@
   command:
     cmd: 'stow --restow --verbose --dir="{{ home }}/.dotfiles" --target="{{ home }}" zsh'
     chdir: "{{ home }}/.dotfiles"
-
-- name: Install oh-my-zsh.
-  become_user: "{{ user }}"
-  shell: 'sh -c "KEEP_ZSHRC=yes $(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended'

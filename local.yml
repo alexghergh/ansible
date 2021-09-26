@@ -10,7 +10,6 @@
 
     # xdg base dirs spec (these will be sourced anyway later in .zshrc, but we need them now)
     xdg_config: "{{ lookup('env', 'XDG_CONFIG_HOME') | default('~/.config', true) }}"
-    # xdg_config_full_path: "{{ xdg_config | expanduser }}"
     xdg_data: "{{ lookup('env', 'XDG_DATA_HOME') | default('~/.local/share', true) }}"
     xdg_cache: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache', true) }}"
 
@@ -32,6 +31,9 @@
 
   tasks:
 
+    # basic package installs
+    - include: tasks/packages.yml
+
     # download the dotfiles repo
     - name: Ensure dotfiles repo is present on the system.
       become_user: "{{ user }}"
@@ -39,11 +41,11 @@
         repo: "https://github.com/alexghergh/dotfiles"
         dest: "{{ home }}/.dotfiles"
 
-    # basic package installs
-    - include: tasks/packages.yml
-
     # zsh setup
     - include: tasks/zsh.yml
+
+    # oh-my-zsh setup
+    - include: tasks/oh-my-zsh.yml
 
     # pyenv setup
     - include: tasks/pyenv.yml
