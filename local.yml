@@ -14,20 +14,22 @@
     xdg_cache: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache', true) }}"
 
     packages_to_install_arch:
-      - stow
-      - nodejs-lts-fermium
-      - pyenv
       - base-devel
       - openssl
       - xz
       - zlib
       - curl
+      - stow
+      - nodejs-lts-fermium
+      - pyenv
+      - fzf
 
     packages_to_install_ubuntu:
-      - stow
-      - nodejs
       - build-essential
       - curl
+      - stow
+      - nodejs
+      - fzf
 
   tasks:
 
