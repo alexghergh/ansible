@@ -13,6 +13,9 @@
     xdg_data: "{{ lookup('env', 'XDG_DATA_HOME') | default('~/.local/share', true) }}"
     xdg_cache: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache', true) }}"
 
+    # the path to the pyenv executable
+    pyenv_pip3_path: "/home/alex/.pyenv/versions/3.9.5/bin/pip3"
+
     packages_to_install_arch:
       - base-devel
       - openssl
@@ -23,6 +26,8 @@
       - nodejs-lts-fermium
       - pyenv
       - fzf
+      - tree-sitter
+      - luajit
 
     packages_to_install_ubuntu:
       - build-essential

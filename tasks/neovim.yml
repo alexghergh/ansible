@@ -41,29 +41,30 @@
     chdir: "{{ home }}/neovim-git"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
-# Ubuntu / Debian
-- name: Install pynvim (Ubuntu / Debian).
+- name: Ensure pynvim is installed as a pip package.
+  become_user: "{{ user }}"
   pip:
     name: pynvim
     state: latest
-    executable: pip3
-  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+    executable: "{{ pyenv_pip3_path }}"
 
 # Ubuntu / Debian
 - name: Install some extra neovim stuff (Ubuntu / Debian).
   apt:
-    name: [ 'ccls', 'nodejs' ]
+    name: [ 'ccls' ]
     state: latest
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
 # Arch Linux
-# install pyenv, set up a default environment, install pynvim
-# install nodejs
 # install ccls
-# install tree-sitter
+# install tree-sitter?
 # install luajit?
 
 - name: Stow the neovim configs.
   command:
     cmd: 'stow --restow --verbose --dir="{{ home }}/.dotfiles" --target="{{ home }}" vim'
     chdir: "{{ home }}/.dotfiles"
+
+- name: Ensure the neovim plugins are installed.
+  command:
+    cmd: "nvim +PackerUpdate +qall"
