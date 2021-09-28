@@ -23,6 +23,7 @@
   git:
     repo: "https://github.com/tmux/tmux"
     dest: "{{ home }}/tmux-git"
+    version: "3.2a"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
 # Ubuntu / Debian
