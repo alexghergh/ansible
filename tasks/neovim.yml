@@ -61,10 +61,11 @@
 # install luajit?
 
 - name: Stow the neovim configs.
+  become_user: "{{ user }}"
   command:
     cmd: 'stow --restow --verbose --dir="{{ home }}/.dotfiles" --target="{{ home }}" vim'
     chdir: "{{ home }}/.dotfiles"
 
 - name: Ensure the neovim plugins are installed.
-  command:
-    cmd: "nvim +PackerUpdate +qall"
+  become_user: "{{ user }}"
+  shell: 'printf "PackerUpdate\nsleep 20\n" | nvim -u {{ xdg_config }}/nvim/init.vim -es'
