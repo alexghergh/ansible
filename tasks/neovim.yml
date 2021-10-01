@@ -55,11 +55,6 @@
     state: latest
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
-# Arch Linux
-# install ccls
-# install tree-sitter?
-# install luajit?
-
 - name: Stow the neovim configs.
   become_user: "{{ user }}"
   command:

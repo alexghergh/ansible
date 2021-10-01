@@ -28,6 +28,7 @@
       - fzf
       - tree-sitter
       - luajit
+      - ccls
 
     packages_to_install_ubuntu:
       - build-essential
@@ -35,6 +36,8 @@
       - stow
       - nodejs
       - fzf
+      - luajit
+      - ccls
 
   tasks:
 
