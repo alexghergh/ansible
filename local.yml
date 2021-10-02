@@ -15,9 +15,9 @@
     # to fix, possibly make an if task which sets the correct xdg paths
     #
     # xdg base dirs spec (these will be sourced anyway later in .zshrc, but we need them now)
-    xdg_config: "{{ lookup('env', 'XDG_CONFIG_HOME') | default('~/.config', true) }}"
-    xdg_data: "{{ lookup('env', 'XDG_DATA_HOME') | default('~/.local/share', true) }}"
-    xdg_cache: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache', true) }}"
+    xdg_config: "{{ lookup('env', 'XDG_CONFIG_HOME') | default(home + '/.config', true) }}"
+    xdg_data: "{{ lookup('env', 'XDG_DATA_HOME') | default(home + '/.local/share', true) }}"
+    xdg_cache: "{{ lookup('env', 'XDG_CACHE_HOME') | default(home + '/.cache', true) }}"
 
     # the path to the pyenv executable
     pyenv_pip3_path: "/home/{{ user }}/.pyenv/versions/3.9.5/bin/pip3"
