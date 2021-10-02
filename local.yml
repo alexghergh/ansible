@@ -8,12 +8,6 @@
     user: "{{ lookup('env', 'USER') | default('alex', true) }}"
     home: "{{ lookup('env', 'HOME') | default('/home/alex/', true) }}"
 
-    # ! TODO as of now, this doesn't correctly work, as ~ gets expanded into the current user,
-    # NOT the user specified above (so this ansible play can only be used when being logged in
-    # as the user you want to run with)
-    #
-    # to fix, possibly make an if task which sets the correct xdg paths
-    #
     # xdg base dirs spec (these will be sourced anyway later in .zshrc, but we need them now)
     xdg_config: "{{ lookup('env', 'XDG_CONFIG_HOME') | default(home + '/.config', true) }}"
     xdg_data: "{{ lookup('env', 'XDG_DATA_HOME') | default(home + '/.local/share', true) }}"
