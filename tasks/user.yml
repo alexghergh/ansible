@@ -1,0 +1,7 @@
+- name: Ensure default user exists and has the correct home and groups set.
+  user:
+    name: "{{ user }}"
+    home: "{{ home }}"
+    group: "{{ user }}"
+    # groups: # check the default groups on arch linux
+    state: present

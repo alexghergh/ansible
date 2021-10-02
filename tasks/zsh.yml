@@ -32,3 +32,9 @@
   command:
     cmd: 'stow --restow --verbose --dir="{{ home }}/.dotfiles" --target="{{ home }}" zsh'
     chdir: "{{ home }}/.dotfiles"
+
+- name: Ensure the user has the correct shell.
+  user:
+    name: "{{ user }}"
+    shell: /bin/zsh
+    state: present
