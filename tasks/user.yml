@@ -1,7 +1,9 @@
-- name: Ensure default user exists and has the correct home and groups set.
+- name: Ensure user exists and has the correct home, groups and password set.
   user:
     name: "{{ user }}"
     home: "{{ home }}"
     group: "{{ user }}"
+    append: yes
     # groups: # check the default groups on arch linux
+    password: "{{ password | password_hash('sha512', passwordsalt) }}"
     state: present

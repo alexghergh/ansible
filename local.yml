@@ -39,6 +39,16 @@
       - luajit
       - ccls
 
+  vars_prompt:
+
+    - name: password
+      prompt: Password -> 
+      private: yes
+
+    - name: passwordsalt
+      prompt: Password salt -> 
+      private: yes
+
   tasks:
 
     # default user, groups setup
