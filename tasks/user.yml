@@ -1,3 +1,8 @@
+- name: Ensure the group exists for the user.
+  group:
+    name: "{{ user }}"
+    state: present
+
 - name: Ensure user exists and has the correct home, groups and password set.
   user:
     name: "{{ user }}"
