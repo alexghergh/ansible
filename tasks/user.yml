@@ -3,12 +3,26 @@
     name: "{{ user }}"
     state: present
 
-- name: Ensure user exists and has the correct home, groups and password set.
+- name: Ensure user exists and has the correct home and password set.
   user:
     name: "{{ user }}"
     home: "{{ home }}"
     group: "{{ user }}"
-    append: yes
-    # groups: # check the default groups on arch linux
     password: "{{ password | password_hash('sha512', passwordsalt) }}"
     state: present
+
+# Arch Linux
+- name: Ensure user has the correct groups (Arch Linux).
+  user:
+    name: "{{ user }}"
+    append: yes
+    groups: []
+  when: ansible_distribution == "Archlinux"
+
+# Ubuntu
+- name: Ensure user has the correct groups (Ubuntu).
+  user:
+    name: "{{ user }}"
+    append: yes
+    groups: [ 'adm', 'cdrom', 'sudo', 'dip', 'plugdev', 'lpadmin', 'lxd', 'sambashare' ]
+  when: ansible_distribution == "Ubuntu"
