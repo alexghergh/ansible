@@ -1,6 +1,4 @@
 # Arch Linux
-# this step is not needed initially, as we already do this when installing git and ansible as a dependency
-# however keep this for idempotency
 - name: Update and upgrade the system (Archlinux). Equivalent to "pacman -Syu".
   pacman:
     update_cache: yes
@@ -14,9 +12,7 @@
   when: ansible_distribution == "Archlinux"
 
 # Ubuntu / Debian
-# this step is not needed initially, as we already do this when installing git and ansible as a dependency
-# however keep this for idempotency
-- name: Update and upgrade the system (Ubuntu / Debian).
+- name: Update and upgrade the system (Ubuntu / Debian). Equivalent to "apt update && apt upgrade".
   apt:
     update_cache: yes
     upgrade: yes
