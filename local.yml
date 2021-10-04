@@ -52,7 +52,7 @@
 
   tasks:
 
-    # default user, groups setup
+    # default user, groups, password setup
     - include: tasks/user.yml
 
     # basic package installs
