@@ -5,8 +5,8 @@
   vars:
 
     # just a sanity-check
-    user: "{{ lookup('env', 'USER') | default('alex', true) }}"
-    home: "{{ lookup('env', 'HOME') | default('/home/alex/', true) }}"
+    user: "alex"
+    home: "/home/alex/"
 
     # xdg base dirs spec (these will be sourced anyway later in .zshrc, but we need them now)
     xdg_config: "{{ lookup('env', 'XDG_CONFIG_HOME') | default(home + '/.config', true) }}"
@@ -14,7 +14,7 @@
     xdg_cache: "{{ lookup('env', 'XDG_CACHE_HOME') | default(home + '/.cache', true) }}"
 
     # the path to the pyenv executable
-    pyenv_pip3_path: "/home/{{ user }}/.pyenv/versions/3.9.5/bin/pip3"
+    pyenv_pip3_path: "{{ home }}/.pyenv/versions/3.9.5/bin/pip3"
 
     packages_to_install_arch:
       - base-devel
