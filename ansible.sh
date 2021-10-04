@@ -24,5 +24,8 @@ elif [ "$os_id" = 'ubuntu' ]; then
     sudo "$(which apt-get)" install python-apt python3-apt git ansible --yes
 fi
 
+# force ansible colors even in a script
+export ANSIBLE_FORCE_COLOR=1
+
 # pull the ansible repo
 "$(which ansible-pull)" --url https://github.com/alexghergh/ansible.git --directory "$HOME"/ansible
