@@ -32,6 +32,7 @@
 
     packages_to_install_ubuntu:
       - build-essential
+      - openssl
       - curl
       - stow
       - nodejs
