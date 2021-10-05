@@ -1,6 +1,6 @@
-- name: Ensure .gitconfig file does not exist already.
+- name: Ensure git config file does not exist already.
   file:
-    path: "{{ home }}/.gitconfig"
+    path: "{{ xdg_config }}/git/config"
     state: absent
 
 - name: Stow the git configs.
