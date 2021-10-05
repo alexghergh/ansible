@@ -1,6 +1,6 @@
-- name: Ensure ~/.config/tmux/ doesn't exist already.
+- name: Ensure .config/tmux doesn't exist already.
   file:
-    path: "{{ xdg_config }}/tmux/"
+    path: "{{ xdg_config }}/tmux"
     state: absent
 
 # Arch Linux
