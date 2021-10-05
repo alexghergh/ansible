@@ -9,9 +9,9 @@
     home: "/home/alex/"
 
     # xdg base dirs spec (these will be sourced anyway later in .zshrc, but we need them now)
-    xdg_config: "{{ lookup('env', 'XDG_CONFIG_HOME') | default(home + '/.config', true) }}"
-    xdg_data: "{{ lookup('env', 'XDG_DATA_HOME') | default(home + '/.local/share', true) }}"
-    xdg_cache: "{{ lookup('env', 'XDG_CACHE_HOME') | default(home + '/.cache', true) }}"
+    xdg_config: "{{ home }}/.config"
+    xdg_data: "{{ home }}/.local/share"
+    xdg_cache: "{{ home }}/.cache"
 
     # the path to the pyenv executable
     pyenv_pip3_path: "{{ home }}/.pyenv/versions/3.9.5/bin/pip3"
@@ -72,7 +72,7 @@
     - include: tasks/oh-my-zsh.yml
 
     # pyenv setup
-    - include: tasks/pyenv.yml
+    #- include: tasks/pyenv.yml
 
     # gitconfig setup
     - include: tasks/gitconfig.yml
