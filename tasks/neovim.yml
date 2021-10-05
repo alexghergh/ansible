@@ -1,8 +1,3 @@
-- name: Ensure .config/nvim doesn't exist already.
-  file:
-    path: "{{ xdg_config }}/nvim"
-    state: absent
-
 # Arch Linux
 - name: Ensure the neovim package is installed (Archlinux).
   pacman:
@@ -54,6 +49,11 @@
     name: [ 'ccls' ]
     state: latest
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+- name: Ensure .config/nvim doesn't exist already.
+  file:
+    path: "{{ xdg_config }}/nvim"
+    state: absent
 
 - name: Stow the neovim configs.
   become_user: "{{ user }}"
