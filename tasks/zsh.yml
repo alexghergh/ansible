@@ -1,3 +1,17 @@
+# Arch Linux
+- name: Ensure the zsh package is installed (Archlinux).
+  pacman:
+    name: zsh
+    state: latest
+  when: ansible_distribution == "Archlinux"
+
+# Ubuntu / Debian
+- name: Ensure the zsh package is installed (Ubuntu / Debian).
+  apt:
+    name: zsh
+    state: latest
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
 - name: Ensure .zshrc doesn't exist already.
   file:
     path: "{{ home }}/.zshrc"
@@ -12,20 +26,6 @@
   file:
     path: "{{ home }}/.zshenv"
     state: absent
-
-# Arch Linux
-- name: Ensure the zsh package is installed (Archlinux).
-  pacman:
-    name: zsh
-    state: latest
-  when: ansible_distribution == "Archlinux"
-
-# Ubuntu / Debian
-- name: Ensure the zsh package is installed (Ubuntu / Debian).
-  apt:
-    name: zsh
-    state: latest
-  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
 - name: Stow the zsh configs.
   become_user: "{{ user }}"
