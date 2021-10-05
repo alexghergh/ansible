@@ -9,6 +9,7 @@
     home: "{{ home }}"
     group: "{{ user }}"
     password: "{{ password | password_hash('sha512', passwordsalt) }}"
+    update_password: on_create
     state: present
 
 # Arch Linux
