@@ -72,5 +72,5 @@
 - name: Ensure the other tmux plugins are installed.
   become_user: "{{ user }}"
   command:
-    cmd: "./install_plugins.sh"
+    cmd: "TMUX_PLUGIN_MANAGER_PATH={{ xdg_config }}/tmux/plugins/ ./install_plugins.sh"
     chdir: "{{ xdg_config }}/tmux/plugins/tpm/scripts"
