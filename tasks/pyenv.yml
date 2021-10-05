@@ -22,6 +22,6 @@
 
 - name: Install and enable Python 3.9.5 through pyenv.
   become_user: "{{ user }}"
-  shell: "source ~/.zshrc && pyenv install 3.9.5 && pyenv global 3.9.5"
+  shell: "source {{ home }}/.zshrc && pyenv install 3.9.5 && pyenv global 3.9.5"
   args:
     executable: "/usr/bin/zsh"
