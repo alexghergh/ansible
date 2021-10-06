@@ -20,9 +20,8 @@
     dest: "{{ home }}/.pyenv"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
-# TODO this might fail due to pyenv asking for confirmation
-# - name: Install and enable Python 3.9.5 through pyenv.
-#   become_user: "{{ user }}"
-#   shell:
-#     cmd: "source {{ home }}/.zshrc && pyenv install 3.9.5 && pyenv global 3.9.5"
-#     executable: "/usr/bin/zsh"
+- name: Install and enable Python 3.9.5 through pyenv.
+  become_user: "{{ user }}"
+  shell:
+    cmd: "source {{ home }}/.zshrc && pyenv install -f 3.9.5 && pyenv global 3.9.5"
+    executable: "/usr/bin/zsh"
