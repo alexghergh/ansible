@@ -3,6 +3,13 @@
     name: "{{ user }}"
     state: present
 
+# NOTE: This will fail when trying to execute the ansible script as the
+# same user we're trying to operate on.
+#
+# Ideally, this should either be executed as another user, or should be
+# executed from the root account.
+#
+# For more information, see 'man usermod' (CAVEATS section).
 - name: Ensure user exists and has the correct home and password set.
   user:
     name: "{{ user }}"
@@ -11,6 +18,7 @@
     password: "{{ password | password_hash('sha512', passwordsalt) }}"
     update_password: on_create
     state: present
+  ignore_errors: yes
 
 # Arch Linux
 - name: Ensure user has the correct groups (Arch Linux).
