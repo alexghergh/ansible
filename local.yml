@@ -6,7 +6,7 @@
 
     # just a sanity-check
     user: "alex"
-    home: "/home/alex/"
+    home: "/home/{{ user }}/"
 
     # xdg base dirs spec (these will be sourced anyway later in .zshrc, but we need them now)
     xdg_config: "{{ home }}/.config"
