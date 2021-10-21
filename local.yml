@@ -18,6 +18,7 @@
 
     packages_to_install_arch:
       - base-devel
+      - coreutils
       - openssl
       - xz
       - zlib
