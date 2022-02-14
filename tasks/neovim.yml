@@ -63,4 +63,4 @@
 
 - name: Ensure the neovim plugins are installed.
   become_user: "{{ user }}"
-  shell: 'printf "PackerUpdate\nsleep 20\n" | nvim -u {{ xdg_config }}/nvim/init.vim -es || /bin/true'
+  shell: 'nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"'
