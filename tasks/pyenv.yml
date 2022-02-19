@@ -20,8 +20,8 @@
     dest: "{{ home }}/.pyenv"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
-- name: Install and enable Python 3.9.5 through pyenv.
+- name: Install and enable Python through pyenv.
   become_user: "{{ user }}"
   shell:
-    cmd: "source {{ xdg_config }}/zsh/.zshrc && pyenv install -f 3.9.5 && pyenv global 3.9.5"
+    cmd: "source {{ xdg_config }}/zsh/.zshrc && pyenv install -f {{ pyenv_python_version }} && pyenv global {{ pyenv_python_version }}"
     executable: "/usr/bin/zsh"
