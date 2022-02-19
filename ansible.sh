@@ -28,4 +28,4 @@ fi
 export ANSIBLE_FORCE_COLOR=1
 
 # pull the ansible repo
-"$(which ansible-pull)" --url https://github.com/alexghergh/ansible.git --directory "$HOME"/ansible
+"$(which ansible-pull)" --url https://github.com/alexghergh/ansible.git --checkout stable --directory "$HOME"/ansible
