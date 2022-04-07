@@ -28,8 +28,6 @@
       - curl
       - stow
       - nodejs-lts-fermium
-      - pyenv
-      - fzf
       - tree-sitter
       - luajit
       - ccls
@@ -40,7 +38,6 @@
       - curl
       - stow
       - nodejs
-      - fzf
       - luajit
       - ccls
 
