@@ -70,9 +70,6 @@
     # zsh setup
     - include: tasks/zsh.yml
 
-    # oh-my-zsh setup
-    - include: tasks/oh-my-zsh.yml
-
     # pyenv setup
     - include: tasks/pyenv.yml
 
