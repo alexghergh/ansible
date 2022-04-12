@@ -65,6 +65,7 @@
       git:
         repo: "https://github.com/alexghergh/dotfiles"
         dest: "{{ home }}/.dotfiles"
+        version: "v0.1-rc"
 
     # zsh setup
     - include: tasks/zsh.yml
