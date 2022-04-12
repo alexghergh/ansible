@@ -30,6 +30,8 @@
       - nodejs-lts-fermium
       - tree-sitter
       - luajit
+
+      # neovim
       - ccls
 
     packages_to_install_ubuntu:
@@ -39,6 +41,8 @@
       - stow
       - nodejs
       - luajit
+
+      # neovim
       - ccls
 
   vars_prompt:
@@ -71,7 +75,7 @@
     - include: tasks/zsh.yml
 
     # pyenv setup
-    - include: tasks/pyenv.yml
+    # - include: tasks/pyenv.yml
 
     # gitconfig setup
     - include: tasks/gitconfig.yml
