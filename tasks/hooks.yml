@@ -9,7 +9,7 @@
 # Ubuntu / Debian
 - name: Ensure the tool update reminder hook is installed (Ubuntu / Debian).
   copy:
-    src: hooks/ubuntu-user-update-reminder.hook
+    src: hooks/ubuntu-user-update-reminder
     dest: /etc/apt/apt.conf.d/
     owner: root
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
