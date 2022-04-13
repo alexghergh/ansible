@@ -86,5 +86,8 @@
     # neovim setup
     - include: tasks/neovim.yml
 
+    # scripts dir setup
+    - include: tasks/scripts.yml
+
     # package managers hooks for tools update reminder
     - include: tasks/hooks.yml
