@@ -1,0 +1,15 @@
+# Arch Linux
+- name: Ensure the tool update reminder hook is installed (Archlinux).
+  copy:
+    src: hooks/arch-user-update-reminder.hook
+    dest: /usr/share/libalpm/hooks/
+    owner: root
+  when: ansible_distribution == "Archlinux"
+
+# Ubuntu / Debian
+- name: Ensure the tool update reminder hook is installed (Ubuntu / Debian).
+  copy:
+    src: hooks/ubuntu-user-update-reminder.hook
+    dest: /etc/apt/apt.conf.d/
+    owner: root
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"

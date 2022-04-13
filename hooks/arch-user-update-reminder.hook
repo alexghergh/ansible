@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+Description = Tools update reminder (Arch)
+When = PostTransaction
+Exec = /home/alex/.scripts/update-reminder/tools-update-reminder.zsh

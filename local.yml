@@ -65,6 +65,7 @@
       git:
         repo: "https://github.com/alexghergh/dotfiles"
         dest: "{{ home }}/.dotfiles"
+        version: "feat/update-script"
 
     # zsh setup
     - include: tasks/zsh.yml
@@ -83,3 +84,6 @@
 
     # neovim setup
     - include: tasks/neovim.yml
+
+    # package managers hooks for tools update reminder
+    - include: tasks/hooks.yml
