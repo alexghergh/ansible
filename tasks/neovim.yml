@@ -36,12 +36,12 @@
     chdir: "{{ home }}/neovim-git"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
-- name: Ensure pynvim is installed as a pip package.
-  become_user: "{{ user }}"
-  pip:
-    name: pynvim
-    state: latest
-    executable: "{{ pyenv_pip3_path }}"
+# - name: Ensure pynvim is installed as a pip package.
+#   become_user: "{{ user }}"
+#   pip:
+#     name: pynvim
+#     state: latest
+#     executable: "{{ pyenv_pip3_path }}"
 
 # Ubuntu / Debian
 - name: Install some extra neovim stuff (Ubuntu / Debian).

@@ -12,19 +12,9 @@
     state: latest
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
-- name: Ensure .zshrc doesn't exist already.
+- name: Ensure the zsh config dir doesn't exist already.
   file:
-    path: "{{ home }}/.zshrc"
-    state: absent
-
-- name: Ensure .zprofile doesn't exist already.
-  file:
-    path: "{{ home }}/.zprofile"
-    state: absent
-
-- name: Ensure .zshenv doesn't exist already.
-  file:
-    path: "{{ home }}/.zshenv"
+    path: "{{ xdg_config }}/zsh"
     state: absent
 
 - name: Stow the zsh configs.

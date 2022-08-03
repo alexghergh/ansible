@@ -29,15 +29,13 @@
       git:
         repo: "https://github.com/alexghergh/dotfiles"
         dest: "{{ home }}/.dotfiles"
+        version: "v0.1-rc"
 
     # zsh setup
     - include: tasks/zsh.yml
 
-    # oh-my-zsh setup
-    - include: tasks/oh-my-zsh.yml
-
     # pyenv setup
-    - include: tasks/pyenv.yml
+    # - include: tasks/pyenv.yml
 
     # gitconfig setup
     - include: tasks/gitconfig.yml
