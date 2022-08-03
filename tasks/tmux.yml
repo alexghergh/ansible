@@ -52,7 +52,7 @@
     chdir: "{{ home }}/tmux-git"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
-- name: Ensure .config/tmux doesn't exist already.
+- name: Ensure the tmux config dir doesn't exist already.
   file:
     path: "{{ xdg_config }}/tmux"
     state: absent

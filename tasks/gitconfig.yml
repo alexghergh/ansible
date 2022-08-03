@@ -12,7 +12,7 @@
     state: latest
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
-- name: Ensure gitconfig does not exist already.
+- name: Ensure the git config dir doesn't exist already.
   file:
     path: "{{ xdg_config }}/git"
     state: absent

@@ -50,7 +50,7 @@
     state: latest
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
-- name: Ensure .config/nvim doesn't exist already.
+- name: Ensure the neovim config dir doesn't exist already.
   file:
     path: "{{ xdg_config }}/nvim"
     state: absent
