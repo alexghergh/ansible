@@ -2,44 +2,8 @@
   hosts: localhost
   become: true
 
-  vars:
-
-    # just a sanity-check
-    user: "alex"
-    home: "/home/{{ user }}/"
-
-    # xdg base dirs spec (these will be sourced anyway later in .zshrc, but we need them now)
-    xdg_config: "{{ home }}/.config"
-    xdg_data: "{{ home }}/.local/share"
-    xdg_cache: "{{ home }}/.cache"
-
-    # python pyenv version to clone
-    pyenv_python_version: "3.9.5"
-
-    # the path to the pyenv executable
-    pyenv_pip3_path: "{{ home }}/.pyenv/versions/{{ pyenv_python_version }}/bin/pip3"
-
-    packages_to_install_arch:
-      - base-devel
-      - coreutils
-      - openssl
-      - xz
-      - zlib
-      - curl
-      - stow
-      - nodejs-lts-fermium
-      - tree-sitter
-      - luajit
-      - ccls
-
-    packages_to_install_ubuntu:
-      - build-essential
-      - openssl
-      - curl
-      - stow
-      - nodejs
-      - luajit
-      - ccls
+  vars_files:
+    - HOSTS_VARS
 
   vars_prompt:
 
