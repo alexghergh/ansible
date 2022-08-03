@@ -29,7 +29,7 @@
       git:
         repo: "https://github.com/alexghergh/dotfiles"
         dest: "{{ home }}/.dotfiles"
-        version: "v0.1-rc"
+        version: "{{ dotfiles_repo_version }}"
 
     # zsh setup
     - include: tasks/zsh.yml

@@ -18,7 +18,7 @@
   git:
     repo: "https://github.com/neovim/neovim"
     dest: "{{ home }}/neovim-git"
-    version: "stable"
+    version: "{{ neovim_repo_version }}"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
 # Ubuntu / Debian

@@ -7,12 +7,6 @@ xdg_config: "{{ home }}/.config"
 xdg_data: "{{ home }}/.local/share"
 xdg_cache: "{{ home }}/.cache"
 
-# python pyenv version to clone
-pyenv_python_version: "3.9.5"
-
-# the path to the pyenv executable
-pyenv_pip3_path: "{{ home }}/.pyenv/versions/{{ pyenv_python_version }}/bin/pip3"
-
 packages_to_install_arch:
 - base-devel
 - coreutils
@@ -34,3 +28,21 @@ packages_to_install_ubuntu:
 - nodejs
 - luajit
 - ccls
+
+# dotfiles repository version to clone
+# should not usually be main, as main is under heavy development
+# it should rather be a stable release or a release candidate under testing
+# could be main in a test/development environment
+dotfiles_repo_version: "v0.1-rc"
+
+# python pyenv version to clone
+pyenv_python_version: "3.9.5"
+
+# the path to the pyenv executable
+pyenv_pip3_path: "{{ home }}/.pyenv/versions/{{ pyenv_python_version }}/bin/pip3"
+
+# tmux version to clone
+tmux_repo_version: "3.2a"
+
+# neovim version to clone
+neovim_repo_version: "stable"
