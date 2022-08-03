@@ -22,8 +22,6 @@ packages_to_install_arch:
 - curl
 - stow
 - nodejs-lts-fermium
-- pyenv
-- fzf
 - tree-sitter
 - luajit
 - ccls
@@ -34,6 +32,5 @@ packages_to_install_ubuntu:
 - curl
 - stow
 - nodejs
-- fzf
 - luajit
 - ccls
