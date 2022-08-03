@@ -1,3 +1,17 @@
+# Arch Linux
+- name: Ensure the git package is installed (Archlinux).
+  pacman:
+    name: git
+    state: latest
+  when: ansible_distribution == "Archlinux"
+
+# Ubuntu / Debian
+- name: Ensure the git package is installed (Ubuntu / Debian).
+  apt:
+    name: git
+    state: latest
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
 - name: Ensure gitconfig does not exist already.
   file:
     path: "{{ xdg_config }}/git"
