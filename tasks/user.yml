@@ -10,6 +10,8 @@
 # executed from the root account.
 #
 # For more information, see 'man usermod' (CAVEATS section).
+#
+# The salt should be at least 16 bytes of random data from /dev/urandom
 - name: Ensure user exists and has the correct home and password set.
   user:
     name: "{{ user }}"
