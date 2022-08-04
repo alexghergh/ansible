@@ -7,6 +7,24 @@ xdg_config: "{{ home }}/.config"
 xdg_data: "{{ home }}/.local/share"
 xdg_cache: "{{ home }}/.cache"
 
+# groups a normal user should be in
+user_groups_arch:
+- sys
+- network
+- adm
+- wheel
+
+user_groups_ubuntu:
+- adm
+- cdrom
+- sudo
+- dip
+- plugdev
+- lpadmin
+- lxd
+- sambashare
+
+# packages to install on a fresh system
 packages_to_install_arch:
 - base-devel
 - coreutils

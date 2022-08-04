@@ -28,7 +28,7 @@
   user:
     name: "{{ user }}"
     append: yes
-    groups: []
+    groups: "{{ user_groups_arch }}"
   when: ansible_distribution == "Archlinux"
 
 # Ubuntu
@@ -36,5 +36,5 @@
   user:
     name: "{{ user }}"
     append: yes
-    groups: [ 'adm', 'cdrom', 'sudo', 'dip', 'plugdev', 'lpadmin', 'lxd', 'sambashare' ]
+    groups: "{{ user_groups_ubuntu }}"
   when: ansible_distribution == "Ubuntu"
