@@ -4,7 +4,7 @@
 
 # get os identification
 if [ -f /etc/os-release ]; then
-    os_id="$(sed '3q;d' /etc/os-release | sed 's/ID=//')"
+    os_id="$(sed -n '/^ID=.*$/p' /etc/os-release | sed 's/ID=//')"
 else
     # if we cannot identify the system, just exit safely
     exit 0
