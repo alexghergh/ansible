@@ -14,7 +14,7 @@ fi
 
 # if we're on arch linux
 if [ "$os_id" = 'arch' ]; then
-    sudo "$(which pacman)" -Syu git ansible-core --noconfirm
+    sudo "$(which pacman)" -Syu python-pip git ansible-core --noconfirm
     "$(which ansible-galaxy)" collection install community.general
 
 # if we're on ubuntu
