@@ -14,14 +14,14 @@
 
 - name: Ensure the zsh config dir doesn't exist already.
   file:
-    path: "{{ xdg_config }}/zsh"
+    path: "{{ zsh_config_dir }}"
     state: absent
 
 - name: Stow the zsh configs.
   become_user: "{{ user }}"
   command:
-    cmd: 'stow --restow --verbose --dir="{{ home }}/.dotfiles" --target="{{ home }}" zsh'
-    chdir: "{{ home }}/.dotfiles"
+    cmd: "{{ zsh_stow_cmd }}"
+    chdir: "{{ dotfiles_dir }}"
 
 - name: Ensure the user has the correct shell (zsh).
   user:

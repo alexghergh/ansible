@@ -1,6 +1,28 @@
+#
+### Table of contents ###
+#
+# 1. General paths, user configs
+# 2. Package installs
+# 3. Dotfiles repo
+# 4. Shell (Zsh)
+# 5. Git and gitconfig
+# 6. Tmux
+# 7. Neovim
+#
+
+
+#
+### 1. General paths, user configs #############################################
+#
+
 # just a sanity-check
 user: "alex"
 home: "/home/{{ user }}/"
+
+dotfiles_dir: "{{ home }}/.dotfiles"
+
+# ! don't use alone, add the config at the end
+base_stow_cmd: 'stow --restow --verbose --dir="{{ dotfiles_dir }}" --target="{{ home }}"'
 
 # xdg base dirs spec (these will be sourced anyway later in .zshrc, but we need them now)
 xdg_config: "{{ home }}/.config"
@@ -23,6 +45,11 @@ user_groups_ubuntu:
 - lpadmin
 - lxd
 - sambashare
+
+
+#
+### 2. Package installs ########################################################
+#
 
 # packages to install on a fresh system
 packages_to_install_arch:
@@ -47,20 +74,89 @@ packages_to_install_ubuntu:
 - luajit
 - ccls
 
-# dotfiles repository version to clone
-# should not usually be main, as main is under heavy development
+
+#
+### 3. Dotfiles repo ###########################################################
+#
+
+# dotfiles repository to clone
+# version should not usually be main, as main is under heavy development
 # it should rather be a stable release or a release candidate under testing
 # could be main in a test/development environment
-dotfiles_repo_version: "v0.1-rc"
+dotfiles_repo: "https://github.com/alexghergh/dotfiles"
+dotfiles_repo_dest: "{{ home }}/.dotfiles"
+dotfiles_repo_version: "v0.1-rc" # branch/tag/release
 
+# TODO pyenv
 # python pyenv version to clone
-pyenv_python_version: "3.9.5"
+#pyenv_python_version: "3.9.5"
 
 # the path to the pyenv executable
-pyenv_pip3_path: "{{ home }}/.pyenv/versions/{{ pyenv_python_version }}/bin/pip3"
+#pyenv_pip3_path: "{{ home }}/.pyenv/versions/{{ pyenv_python_version }}/bin/pip3"
 
-# tmux version to clone
+
+#
+### 4. Shell (Zsh) #############################################################
+#
+
+zsh_config_dir: "{{ xdg_config }}/zsh"
+zsh_stow_cmd: "{{ base_stow_cmd }} zsh"
+
+
+#
+### 5. Git and gitconfig #######################################################
+#
+
+git_config_dir: "{{ xdg_config }}/git"
+git_stow_cmd: "{{ base_stow_cmd }} git"
+
+
+#
+### 6. Tmux ####################################################################
+#
+
+# tmux repo to clone (only ubuntu; see github.com/tmux/tmux)
+tmux_repo: "https://github.com/tmux/tmux"
+tmux_repo_dest: "{{ home }}/tmux-git"
 tmux_repo_version: "3.2a"
 
-# neovim version to clone
+# dependencies needed to build the latest tmux on ubuntu
+tmux_dependencies_ubuntu: [ 'libevent-dev', 'ncurses-dev', 'build-essential', 'bison', 'pkg-config', 'autoconf', 'automake' ]
+
+# see https://github.com/tmux/tmux/wiki/Installing
+tmux_install_cmd_1: "sh autogen.sh"
+tmux_install_cmd_2: "./configure"
+tmux_install_cmd_3: "make"
+tmux_install_cmd_4: "make install" # run with sudo
+
+# tmux plugin manager (see github.com/tmux-plugins/tpm)
+tmux_plugin_manager_repo: "https://github.com/tmux-plugins/tpm"
+tmux_plugin_manager_repo_dest: "{{ xdg_config }}/tmux/plugins/tpm"
+
+tmux_config_dir: "{{ xdg_config }}/tmux"
+tmux_stow_cmd: "{{ base_stow_cmd }} tmux"
+
+tmux_plugins_install_cmd: "TMUX_PLUGIN_MANAGER_PATH={{ xdg_config }}/tmux/plugins/ ./install_plugins.sh"
+tmux_plugins_installer_path: "{{ tmux_plugin_manager_repo_dest }}/scripts"
+
+
+#
+### 7. Neovim ##################################################################
+#
+
+# neovim repo to clone (only ubuntu; see github.com/neovim/neovim)
+neovim_repo: "https://github.com/neovim/neovim"
+neovim_repo_dest: "{{ home }}/neovim-git"
 neovim_repo_version: "stable"
+
+# dependencies needed to build the latest neovim on ubuntu
+neovim_dependencies_ubuntu: [ 'python3-pip', 'ninja-build', 'gettext', 'libtool', 'libtool-bin', 'autoconf', 'automake', 'cmake', 'g++', 'pkg-config', 'unzip', 'curl', 'doxygen' ]
+
+# see https://github.com/neovim/neovim/wiki/Installing-Neovim#install-from-source
+neovim_install_cmd_1: "make CMAKE_BUILD_TYPE=Release"
+neovim_install_cmd_2: "make install" # run with sudo
+
+neovim_config_dir: "{{ xdg_config }}/nvim"
+neovim_stow_cmd: "{{ base_stow_cmd }} vim"
+
+neovim_plugins_install_cmd: 'nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"'

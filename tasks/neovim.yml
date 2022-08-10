@@ -8,7 +8,7 @@
 # Ubuntu / Debian
 - name: Ensure neovim dependencies are installed (Ubuntu / Debian).
   apt:
-    name: [ 'python3-pip', 'ninja-build', 'gettext', 'libtool', 'libtool-bin', 'autoconf', 'automake', 'cmake', 'g++', 'pkg-config', 'unzip', 'curl' ]
+    name: "{{ neovim_dependencies_ubuntu }}"
     state: latest
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
@@ -16,8 +16,8 @@
 - name: Clone the neovim git repo (Ubuntu / Debian).
   become_user: "{{ user }}"
   git:
-    repo: "https://github.com/neovim/neovim"
-    dest: "{{ home }}/neovim-git"
+    repo: "{{ neovim_repo }}"
+    dest: "{{ neovim_repo_dest }}"
     version: "{{ neovim_repo_version }}"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
@@ -25,15 +25,15 @@
 - name: Configure and install neovim part I (Ubuntu / Debian).
   become_user: "{{ user }}"
   command:
-    cmd: "make CMAKE_BUILD_TYPE=Release"
-    chdir: "{{ home }}/neovim-git"
+    cmd: "{{ neovim_install_cmd_1 }}"
+    chdir: "{{ neovim_repo_dest }}"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
 # Ubuntu / Debian
 - name: Configure and install neovim part II (Ubuntu / Debian).
   command:
-    cmd: "make install"
-    chdir: "{{ home }}/neovim-git"
+    cmd: "{{ neovim_install_cmd_2 }}"
+    chdir: "{{ neovim_repo_dest }}"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
 # - name: Ensure pynvim is installed as a pip package.
@@ -44,23 +44,23 @@
 #     executable: "{{ pyenv_pip3_path }}"
 
 # Ubuntu / Debian
-- name: Install some extra neovim stuff (Ubuntu / Debian).
-  apt:
-    name: [ 'ccls' ]
-    state: latest
-  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+# - name: Install some extra neovim stuff (Ubuntu / Debian).
+#   apt:
+#     name: [ 'ccls' ]
+#     state: latest
+#   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
 - name: Ensure the neovim config dir doesn't exist already.
   file:
-    path: "{{ xdg_config }}/nvim"
+    path: "{{ neovim_config_dir }}"
     state: absent
 
 - name: Stow the neovim configs.
   become_user: "{{ user }}"
   command:
-    cmd: 'stow --restow --verbose --dir="{{ home }}/.dotfiles" --target="{{ home }}" vim'
-    chdir: "{{ home }}/.dotfiles"
+    cmd: "{{ neovim_stow_cmd }}"
+    chdir: "{{ dotfiles_dir }}"
 
 - name: Ensure the neovim plugins are installed.
   become_user: "{{ user }}"
-  shell: 'nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"'
+  shell: "{{ neovim_plugins_install_cmd }}"

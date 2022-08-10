@@ -27,8 +27,8 @@
     - name: Ensure dotfiles repo is present on the system.
       become_user: "{{ user }}"
       git:
-        repo: "https://github.com/alexghergh/dotfiles"
-        dest: "{{ home }}/.dotfiles"
+        repo: "{{ dotfiles_repo }}"
+        dest: "{{ dotfiles_repo_dest }}"
         version: "{{ dotfiles_repo_version }}"
 
     # zsh setup

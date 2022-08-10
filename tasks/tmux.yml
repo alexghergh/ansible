@@ -8,7 +8,7 @@
 # Ubuntu / Debian
 - name: Ensure tmux dependencies are installed (Ubuntu / Debian).
   apt:
-    name: [ 'libevent-dev', 'ncurses-dev', 'build-essential', 'bison', 'pkg-config', 'autoconf', 'automake' ]
+    name: "{{ tmux_dependencies_ubuntu }}"
     state: latest
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
@@ -16,8 +16,8 @@
 - name: Ensure the tmux git repo is present (Ubuntu / Debian).
   become_user: "{{ user }}"
   git:
-    repo: "https://github.com/tmux/tmux"
-    dest: "{{ home }}/tmux-git"
+    repo: "{{ tmux_repo }}"
+    dest: "{{ tmux_repo_dest }}"
     version: "{{ tmux_repo_version }}"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
@@ -25,52 +25,52 @@
 - name: Configure and install tmux part I (Ubuntu / Debian).
   become_user: "{{ user }}"
   command:
-    cmd: "sh autogen.sh"
-    chdir: "{{ home }}/tmux-git"
+    cmd: "{{ tmux_install_cmd_1 }}"
+    chdir: "{{ tmux_repo_dest }}"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
 # Ubuntu / Debian
 - name: Configure and install tmux part II (Ubuntu / Debian).
   become_user: "{{ user }}"
   command:
-    cmd: "./configure"
-    chdir: "{{ home }}/tmux-git"
+    cmd: "{{ tmux_install_cmd_2 }}"
+    chdir: "{{ tmux_repo_dest }}"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
-# Ubuntu / Debian
+# # Ubuntu / Debian
 - name: Configure and install tmux part III (Ubuntu / Debian).
   become_user: "{{ user }}"
   command:
-    cmd: "make"
-    chdir: "{{ home }}/tmux-git"
+    cmd: "{{ tmux_install_cmd_3 }}"
+    chdir: "{{ tmux_repo_dest }}"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
 # Ubuntu / Debian
-- name: Configure and install tmux part IV (Ubuntu / Debian).
+- name: Configure and install tmux part II (Ubuntu / Debian).
   command:
-    cmd: "make install"
-    chdir: "{{ home }}/tmux-git"
+    cmd: "{{ tmux_install_cmd_4 }}"
+    chdir: "{{ tmux_repo_dest }}"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
 - name: Ensure the tmux config dir doesn't exist already.
   file:
-    path: "{{ xdg_config }}/tmux"
+    path: "{{ tmux_config_dir }}"
     state: absent
 
 - name: Stow the tmux configs.
   become_user: "{{ user }}"
   command:
-    cmd: 'stow --restow --verbose --dir="{{ home }}/.dotfiles" --target="{{ home }}" tmux'
-    chdir: "{{ home }}/.dotfiles"
+    cmd: "{{ tmux_stow_cmd }}"
+    chdir: "{{ dotfiles_dir }}"
 
 - name: Ensure tmux plugin manager is installed.
   become_user: "{{ user }}"
   git:
-    repo: "https://github.com/tmux-plugins/tpm"
-    dest: "{{ xdg_config }}/tmux/plugins/tpm"
+    repo: "{{ tmux_plugin_manager_repo }}"
+    dest: "{{ tmux_plugin_manager_repo_dest }}"
 
 - name: Ensure the other tmux plugins are installed.
   become_user: "{{ user }}"
   shell:
-    cmd: "TMUX_PLUGIN_MANAGER_PATH={{ xdg_config }}/tmux/plugins/ ./install_plugins.sh"
-    chdir: "{{ xdg_config }}/tmux/plugins/tpm/scripts"
+    cmd: "{{ tmux_plugins_install_cmd }}"
+    chdir: "{{ tmux_plugins_installer_path }}"

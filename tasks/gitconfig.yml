@@ -14,11 +14,11 @@
 
 - name: Ensure the git config dir doesn't exist already.
   file:
-    path: "{{ xdg_config }}/git"
+    path: "{{ git_config_dir }}"
     state: absent
 
 - name: Stow the git configs.
   become_user: "{{ user }}"
   command:
-    cmd: 'stow --restow --verbose --dir="{{ home }}/.dotfiles" --target="{{ home }}" git'
-    chdir: "{{ home }}/.dotfiles"
+    cmd: "{{ git_stow_cmd }}"
+    chdir: "{{ dotfiles_dir }}"
