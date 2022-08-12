@@ -2,6 +2,10 @@
 
 Ansible config for easy hopping between computers.
 
+The repo contains the install script and the ansible playbook for cloning the
+dotfiles and executing all the initial steps necessary on a fresh system (like
+installing the plugins, moving every configuration in the right directory etc.).
+
 So far, the script setup is only tested on Arch Linux and Ubuntu (20.04 and
 22.04), however it might work on other distros as well with some tweaking (most
 importantly, the operating system should adhere as best as possible to the XDG
