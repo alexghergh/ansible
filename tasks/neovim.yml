@@ -13,12 +13,20 @@
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
 # Ubuntu / Debian
-- name: Clone the neovim git repo (Ubuntu / Debian).
+- name: Ensure the neovim git repo is present (Ubuntu / Debian).
   become_user: "{{ user }}"
   git:
     repo: "{{ neovim_repo }}"
     dest: "{{ neovim_repo_dest }}"
     version: "{{ neovim_repo_version }}"
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+# Ubuntu / Debian
+- name: Ensure the repo is clean of config files (Ubuntu / Debian).
+  become_user: "{{ user }}"
+  command:
+    cmd: "{{ neovim_clean_repo_cmd }}"
+    chdir: "{{ neovim_repo_dest }}"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
 # Ubuntu / Debian
