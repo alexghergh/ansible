@@ -22,14 +22,6 @@
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
 # Ubuntu / Debian
-- name: Ensure the repo is clean of config files (Ubuntu / Debian).
-  become_user: "{{ user }}"
-  command:
-    cmd: "{{ tmux_clean_repo_cmd }}"
-    chdir: "{{ tmux_repo_dest }}"
-  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
-
-# Ubuntu / Debian
 - name: Configure and install tmux part I (Ubuntu / Debian).
   become_user: "{{ user }}"
   command:

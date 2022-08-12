@@ -129,8 +129,6 @@ tmux_install_cmd_2: "./configure"
 tmux_install_cmd_3: "make"
 tmux_install_cmd_4: "make install" # run with sudo
 
-tmux_clean_repo_cmd: "make distclean"
-
 # tmux plugin manager (see github.com/tmux-plugins/tpm)
 tmux_plugin_manager_repo: "https://github.com/tmux-plugins/tpm"
 tmux_plugin_manager_repo_dest: "{{ xdg_config }}/tmux/plugins/tpm"
