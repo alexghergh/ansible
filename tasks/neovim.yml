@@ -44,19 +44,11 @@
     chdir: "{{ neovim_repo_dest }}"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
-# - name: Ensure pynvim is installed as a pip package.
-#   become_user: "{{ user }}"
-#   pip:
-#     name: pynvim
-#     state: latest
-#     executable: "{{ pyenv_pip3_path }}"
-
-# Ubuntu / Debian
-# - name: Install some extra neovim stuff (Ubuntu / Debian).
-#   apt:
-#     name: [ 'ccls' ]
-#     state: latest
-#   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+- name: Ensure pynvim is installed as a python package.
+  become_user: "{{ user }}"
+  pip:
+    name: pynvim
+    state: latest
 
 - name: Ensure the neovim config dir doesn't exist already.
   file:

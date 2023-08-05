@@ -5,22 +5,9 @@
   vars_files:
     - HOSTS_VARS
 
-  vars_prompt:
-
-    - name: password
-      prompt: Password -> 
-      private: yes
-
-    - name: passwordsalt
-      prompt: Password salt -> 
-      private: yes
-
   tasks:
 
-    # default user, groups, password setup
-    - include_tasks: tasks/user.yml
-
-    # basic package installs
+    # ensure basic packages are installed
     - include_tasks: tasks/packages.yml
 
     # download the dotfiles repo

@@ -15,35 +15,15 @@
 ### 1. General paths, user configs #############################################
 #
 
-# just a sanity-check
-user: "alex"
-home: "/home/{{ user }}/"
-
+user: "{{ lookup('env', 'USER') }}"
+home: "{{ lookup('env', 'HOME') }}"
 dotfiles_dir: "{{ home }}/.dotfiles"
 
 # ! don't use alone, add the config at the end
 base_stow_cmd: 'stow --restow --verbose --dir="{{ dotfiles_dir }}" --target="{{ home }}"'
 
-# xdg base dirs spec (these will be sourced later anyway in .zshrc, but we need them now)
+# xdg config base dir (this will be sourced later anyway, but we need it now)
 xdg_config: "{{ home }}/.config"
-xdg_data: "{{ home }}/.local/share"
-xdg_cache: "{{ home }}/.cache"
-
-# groups a normal user should be in
-user_groups_arch:
-- adm
-- wheel
-- uucp
-
-user_groups_ubuntu:
-- adm
-- cdrom
-- sudo
-- dip
-- plugdev
-- lpadmin
-- lxd
-- sambashare
 
 
 #
@@ -59,7 +39,7 @@ packages_to_install_arch:
 - zlib
 - curl
 - stow
-- nodejs-lts-fermium
+- nodejs-lts-gallium
 - tree-sitter
 - luajit
 - ccls
@@ -79,12 +59,9 @@ packages_to_install_ubuntu:
 #
 
 # dotfiles repository to clone
-# version should not usually be main, as main is under heavy development
-# it should rather be a stable release or a release candidate under testing
-# could be main in a test/development environment
 dotfiles_repo: "https://github.com/alexghergh/dotfiles"
 dotfiles_repo_dest: "{{ home }}/.dotfiles"
-dotfiles_repo_version: "v0.2-rc" # branch/tag/release
+dotfiles_repo_version: "main"
 
 # TODO pyenv
 # python pyenv version to clone
@@ -114,15 +91,22 @@ git_stow_cmd: "{{ base_stow_cmd }} git"
 ### 6. Tmux ####################################################################
 #
 
-# tmux repo to clone (only ubuntu; see github.com/tmux/tmux)
+# tmux repo to clone (only ubuntu needs manual building)
 tmux_repo: "https://github.com/tmux/tmux"
 tmux_repo_dest: "{{ home }}/tmux-git"
 tmux_repo_version: "3.3"
 
 # dependencies needed to build the latest tmux on ubuntu
-tmux_dependencies_ubuntu: [ 'libevent-dev', 'ncurses-dev', 'build-essential', 'bison', 'pkg-config', 'autoconf', 'automake' ]
+tmux_dependencies_ubuntu:
+- libevent-dev
+- ncurses-dev
+- build-essential
+- bison
+- pkg-config
+- autoconf
+- automake
 
-# see https://github.com/tmux/tmux/wiki/Installing
+# build steps; see https://github.com/tmux/tmux/wiki/Installing
 tmux_install_cmd_1: "sh autogen.sh"
 tmux_install_cmd_2: "./configure"
 tmux_install_cmd_3: "make"
@@ -143,13 +127,26 @@ tmux_plugins_installer_path: "{{ tmux_plugin_manager_repo_dest }}/scripts"
 ### 7. Neovim ##################################################################
 #
 
-# neovim repo to clone (only ubuntu; see github.com/neovim/neovim)
+# neovim repo to clone (only ubuntu needs manual building)
 neovim_repo: "https://github.com/neovim/neovim"
 neovim_repo_dest: "{{ home }}/neovim-git"
 neovim_repo_version: "stable"
 
 # dependencies needed to build the latest neovim on ubuntu
-neovim_dependencies_ubuntu: [ 'python3-pip', 'ninja-build', 'gettext', 'libtool', 'libtool-bin', 'autoconf', 'automake', 'cmake', 'g++', 'pkg-config', 'unzip', 'curl', 'doxygen' ]
+neovim_dependencies_ubuntu:
+- python3-pip
+- ninja-build
+- gettext
+- libtool
+- libtool-bin
+- autoconf
+- automake
+- cmake
+- g++
+- pkg-config
+- unzip
+- curl
+- doxygen
 
 # see https://github.com/neovim/neovim/wiki/Installing-Neovim#install-from-source
 neovim_install_cmd_1: "make CMAKE_BUILD_TYPE=Release"

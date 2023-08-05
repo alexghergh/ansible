@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# Author: alexghergh
-
 # get os identification
 if [ -f /etc/os-release ]; then
     os_id="$(sed -n '/^ID=.*$/p' /etc/os-release | sed 's/ID=//')"
@@ -14,14 +12,14 @@ os_detected='0'
 
 # update and upgrade the system and install ansible and other dependencies
 
-# if we're on arch linux
+# if on arch linux
 if [ "$os_id" = 'arch' ]; then
     sudo "$(which pacman)" -Syu python-pip git ansible-core --noconfirm
     "$(which ansible-galaxy)" collection install community.general
 
     os_detected='1'
 
-# if we're on ubuntu
+# if on ubuntu
 elif [ "$os_id" = 'ubuntu' ]; then
     sudo "$(which apt-get)" update --yes
     sudo "$(which apt-get)" upgrade --yes
@@ -30,7 +28,7 @@ elif [ "$os_id" = 'ubuntu' ]; then
     os_detected='1'
 fi
 
-# if we didn't detect a supported operating system
+# if a supported operating system wasn't detected
 if [ "$os_detected" = '0' ]; then
     print "Could not detect a supported os, exiting..."
     exit 0
