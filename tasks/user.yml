@@ -23,7 +23,6 @@
   ignore_errors: yes
 
 # Arch Linux
-# TODO: see what groups a user should be in
 - name: Ensure user has the correct groups (Arch Linux).
   user:
     name: "{{ user }}"

@@ -46,7 +46,7 @@
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
 # Ubuntu / Debian
-- name: Configure and install tmux part II (Ubuntu / Debian).
+- name: Configure and install tmux part IV (Ubuntu / Debian).
   command:
     cmd: "{{ tmux_install_cmd_4 }}"
     chdir: "{{ tmux_repo_dest }}"

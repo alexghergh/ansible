@@ -24,17 +24,16 @@ dotfiles_dir: "{{ home }}/.dotfiles"
 # ! don't use alone, add the config at the end
 base_stow_cmd: 'stow --restow --verbose --dir="{{ dotfiles_dir }}" --target="{{ home }}"'
 
-# xdg base dirs spec (these will be sourced anyway later in .zshrc, but we need them now)
+# xdg base dirs spec (these will be sourced later anyway in .zshrc, but we need them now)
 xdg_config: "{{ home }}/.config"
 xdg_data: "{{ home }}/.local/share"
 xdg_cache: "{{ home }}/.cache"
 
 # groups a normal user should be in
 user_groups_arch:
-- sys
-- network
 - adm
 - wheel
+- uucp
 
 user_groups_ubuntu:
 - adm
@@ -85,7 +84,7 @@ packages_to_install_ubuntu:
 # could be main in a test/development environment
 dotfiles_repo: "https://github.com/alexghergh/dotfiles"
 dotfiles_repo_dest: "{{ home }}/.dotfiles"
-dotfiles_repo_version: "v0.1-rc" # branch/tag/release
+dotfiles_repo_version: "v0.2-rc" # branch/tag/release
 
 # TODO pyenv
 # python pyenv version to clone
@@ -118,7 +117,7 @@ git_stow_cmd: "{{ base_stow_cmd }} git"
 # tmux repo to clone (only ubuntu; see github.com/tmux/tmux)
 tmux_repo: "https://github.com/tmux/tmux"
 tmux_repo_dest: "{{ home }}/tmux-git"
-tmux_repo_version: "3.2a"
+tmux_repo_version: "3.3"
 
 # dependencies needed to build the latest tmux on ubuntu
 tmux_dependencies_ubuntu: [ 'libevent-dev', 'ncurses-dev', 'build-essential', 'bison', 'pkg-config', 'autoconf', 'automake' ]
