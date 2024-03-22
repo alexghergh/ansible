@@ -63,13 +63,6 @@ dotfiles_repo: "https://github.com/alexghergh/dotfiles"
 dotfiles_repo_dest: "{{ home }}/.dotfiles"
 dotfiles_repo_version: "main"
 
-# TODO pyenv
-# python pyenv version to clone
-#pyenv_python_version: "3.9.5"
-
-# the path to the pyenv executable
-#pyenv_pip3_path: "{{ home }}/.pyenv/versions/{{ pyenv_python_version }}/bin/pip3"
-
 
 #
 ### 4. Shell (Zsh) #############################################################

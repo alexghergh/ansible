@@ -21,9 +21,6 @@
     # zsh setup
     - include_tasks: tasks/zsh.yml
 
-    # pyenv setup
-    # - include_tasks: tasks/pyenv.yml
-
     # gitconfig setup
     - include_tasks: tasks/gitconfig.yml
 
