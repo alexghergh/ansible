@@ -20,7 +20,8 @@ system, creating the user/home etc.). **Only run the script as the user who is
 intended to use the system, not as root.**
 
 ```
-curl https://raw.githubusercontent.com/alexghergh/ansible/stable/ansible.sh | sh
+wget https://raw.githubusercontent.com/alexghergh/ansible/stable/ansible.sh
+sh ansible.sh
 ```
 
 ### Ubuntu

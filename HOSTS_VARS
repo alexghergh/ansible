@@ -1,18 +1,5 @@
 #
-### Table of contents ###
-#
-# 1. General paths, user configs
-# 2. Package installs
-# 3. Dotfiles repo
-# 4. Shell (Zsh)
-# 5. Git and gitconfig
-# 6. Tmux
-# 7. Neovim
-#
-
-
-#
-### 1. General paths, user configs #############################################
+# misc stuff
 #
 
 user: "{{ lookup('env', 'USER') }}"
@@ -27,10 +14,9 @@ xdg_config: "{{ home }}/.config"
 
 
 #
-### 2. Package installs ########################################################
+# package installs
 #
 
-# packages to install on a fresh system
 packages_to_install_arch:
 - base-devel
 - coreutils
@@ -55,7 +41,7 @@ packages_to_install_ubuntu:
 
 
 #
-### 3. Dotfiles repo ###########################################################
+# dotfiles repo
 #
 
 # dotfiles repository to clone
@@ -65,15 +51,22 @@ dotfiles_repo_version: "main"
 
 
 #
-### 4. Shell (Zsh) #############################################################
+# zsh
 #
 
 zsh_config_dir: "{{ xdg_config }}/zsh"
 zsh_stow_cmd: "{{ base_stow_cmd }} zsh"
 
+#
+# fish
+#
+
+fish_config_dir: "{{ xdg_config }}/fish"
+fish_stow_cmd: "{{ base_stow_cmd }} fish"
+
 
 #
-### 5. Git and gitconfig #######################################################
+# git
 #
 
 git_config_dir: "{{ xdg_config }}/git"
@@ -81,15 +74,15 @@ git_stow_cmd: "{{ base_stow_cmd }} git"
 
 
 #
-### 6. Tmux ####################################################################
+# tmux
 #
 
-# tmux repo to clone (only ubuntu needs manual building)
+# tmux repo (for source install)
 tmux_repo: "https://github.com/tmux/tmux"
 tmux_repo_dest: "{{ home }}/tmux-git"
 tmux_repo_version: "3.3"
 
-# dependencies needed to build the latest tmux on ubuntu
+# dependencies needed to build tmux
 tmux_dependencies_ubuntu:
 - libevent-dev
 - ncurses-dev
@@ -117,15 +110,15 @@ tmux_plugins_installer_path: "{{ tmux_plugin_manager_repo_dest }}/scripts"
 
 
 #
-### 7. Neovim ##################################################################
+# neovim
 #
 
-# neovim repo to clone (only ubuntu needs manual building)
+# neovim repo (for source install)
 neovim_repo: "https://github.com/neovim/neovim"
 neovim_repo_dest: "{{ home }}/neovim-git"
 neovim_repo_version: "stable"
 
-# dependencies needed to build the latest neovim on ubuntu
+# dependencies needed to build neovim
 neovim_dependencies_ubuntu:
 - python3-pip
 - ninja-build

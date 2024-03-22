@@ -1,0 +1,24 @@
+# Arch Linux
+- name: Ensure the fish package is installed (Archlinux).
+  pacman:
+    name: fish
+    state: latest
+  when: ansible_distribution == "Archlinux"
+
+# Ubuntu / Debian
+- name: Ensure the fish package is installed (Ubuntu / Debian).
+  apt:
+    name: fish
+    state: latest
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+- name: Ensure the fish config dir doesn't exist already.
+  file:
+    path: "{{ fish_config_dir }}"
+    state: absent
+
+- name: Stow the fish configs.
+  become_user: "{{ user }}"
+  command:
+    cmd: "{{ fish_stow_cmd }}"
+    chdir: "{{ dotfiles_dir }}"

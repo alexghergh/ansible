@@ -21,6 +21,9 @@
     # zsh setup
     - include_tasks: tasks/zsh.yml
 
+    # fish setup
+    - include_tasks: tasks/fish.yml
+
     # gitconfig setup
     - include_tasks: tasks/gitconfig.yml
 
