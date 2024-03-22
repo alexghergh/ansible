@@ -18,9 +18,6 @@
         dest: "{{ dotfiles_repo_dest }}"
         version: "{{ dotfiles_repo_version }}"
 
-    # zsh setup
-    - include_tasks: tasks/zsh.yml
-
     # fish setup
     - include_tasks: tasks/fish.yml
 

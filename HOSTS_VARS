@@ -51,13 +51,6 @@ dotfiles_repo_version: "main"
 
 
 #
-# zsh
-#
-
-zsh_config_dir: "{{ xdg_config }}/zsh"
-zsh_stow_cmd: "{{ base_stow_cmd }} zsh"
-
-#
 # fish
 #
 
