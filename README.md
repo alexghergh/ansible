@@ -16,7 +16,7 @@ contained inside `HOSTS_VARS`.
 ## Running the script
 
 Make sure the initial install steps are already taken care of (setting up the
-system, creating the user etc.). **Only run the script as the user who is
+system, creating the user/home etc.). **Only run the script as the user who is
 intended to use the system, not as root.**
 
 ```
