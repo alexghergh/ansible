@@ -136,4 +136,4 @@ neovim_clean_repo_cmd: "make distclean"
 neovim_config_dir: "{{ xdg_config }}/nvim"
 neovim_stow_cmd: "{{ base_stow_cmd }} vim"
 
-neovim_plugins_install_cmd: 'nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"'
+neovim_plugins_install_cmd: 'nvim --headless "+Lazy! sync" +qa'
