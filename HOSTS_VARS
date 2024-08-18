@@ -25,7 +25,7 @@ packages_to_install_arch:
 - zlib
 - curl
 - stow
-- nodejs-lts-gallium
+- nodejs
 - tree-sitter
 - luajit
 - ccls
