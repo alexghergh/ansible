@@ -44,11 +44,21 @@
     chdir: "{{ neovim_repo_dest }}"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
+# Ubuntu / Debian
 - name: Ensure pynvim is installed as a python package.
   become_user: "{{ user }}"
   pip:
     name: pynvim
     state: latest
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+# Arch Linux
+- name: Ensure pynvim is installed as a python package.
+  become_user: "{{ user }}"
+  pacman:
+    name: python-pynvim
+    state: latest
+  when: ansible_distribution == "Archlinux"
 
 - name: Ensure the neovim config dir doesn't exist already.
   file:
