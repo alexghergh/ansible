@@ -39,6 +39,18 @@ packages_to_install_ubuntu:
 - luajit
 - ccls
 
+packages_to_install_asahi:
+- @c-development
+- coreutils
+- dnf-plugins-core
+- openssl
+- xz
+- zlib
+- curl
+- stow
+- nodejs
+- libtree-sitter
+- luajit
 
 #
 # dotfiles repo

@@ -12,6 +12,13 @@
     state: latest
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
+# Asahi Linux (Fedora Remix)
+- name: Ensure the git package is installed (Asahi Fedora Linux).
+  dnf:
+    name: git
+    state: latest
+  when: ansible_distribution == "Fedora"
+
 - name: Ensure the git config dir doesn't exist already.
   file:
     path: "{{ git_config_dir }}"

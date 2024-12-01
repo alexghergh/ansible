@@ -27,6 +27,13 @@ elif [ "$os_id" = 'ubuntu' ]; then
     sudo "$(which apt-get)" install python3-apt git ansible --yes
 
     os_detected='1'
+
+# fedora asahi linux
+elif [ "$os_id" = 'fedora-asahi-remix' ]; then
+    sudo "$(which dnf)" upgrade --assumeyes
+    sudo "$(which dnf)" install --assumeyes python3-pip git ansible ansible-collection-community-general
+
+    os_detected='1'
 fi
 
 # if a supported operating system wasn't detected

@@ -57,6 +57,13 @@
     path: "{{ tmux_config_dir }}"
     state: absent
 
+# Asahi Linux (Fedora Remix)
+- name: Ensure the tmux package is installed (Asahi Fedora Linux).
+  dnf:
+    name: tmux
+    state: latest
+  when: ansible_distribution == "Fedora"
+
 - name: Stow the tmux configs.
   become_user: "{{ user }}"
   command:

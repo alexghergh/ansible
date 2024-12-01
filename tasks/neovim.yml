@@ -1,3 +1,5 @@
+## neovim install
+
 # Arch Linux
 - name: Ensure the neovim package is installed (Archlinux).
   pacman:
@@ -44,13 +46,14 @@
     chdir: "{{ neovim_repo_dest }}"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
-# Ubuntu / Debian
-- name: Ensure pynvim is installed as a python package.
-  become_user: "{{ user }}"
-  pip:
-    name: pynvim
+# Asahi Linux (Fedora Remix)
+- name: Ensure the neovim package is installed (Asahi Fedora Linux).
+  dnf:
+    name: neovim
     state: latest
-  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+  when: ansible_distribution == "Fedora"
+
+## pynvim install
 
 # Arch Linux
 - name: Ensure pynvim is installed as a python package.
@@ -59,6 +62,22 @@
     name: python-pynvim
     state: latest
   when: ansible_distribution == "Archlinux"
+
+# Ubuntu / Debian
+- name: Ensure pynvim is installed as a python package.
+  become_user: "{{ user }}"
+  pip:
+    name: pynvim
+    state: latest
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+# Asahi Linux (Fedora Remix)
+- name: Ensure pynvim is installed as a python package.
+  become_user: "{{ user }}"
+  pip:
+    name: pynvim
+    state: latest
+  when: ansible_distribution == "Fedora"
 
 - name: Ensure the neovim config dir doesn't exist already.
   file:

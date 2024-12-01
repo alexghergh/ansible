@@ -23,3 +23,17 @@
     name: "{{ packages_to_install_ubuntu }}"
     state: latest
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+# Asahi Linux (Fedora Remix)
+- name: Update and upgrade the system (Asahi Fedora Linux). Equivalent to "dnf upgrade".
+  dnf:
+    update_cache: yes
+    name: '*'
+    state: latest
+  when: ansible_distribution == "Fedora"
+
+- name: Ensure basic utilities are installed (Asahi Fedora Linux).
+  dnf:
+    name: "{{ packages_to_install_asahi }}"
+    state: latest
+  when: ansible_distribution == "Fedora"
