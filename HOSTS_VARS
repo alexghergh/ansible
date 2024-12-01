@@ -40,7 +40,7 @@ packages_to_install_ubuntu:
 - ccls
 
 packages_to_install_asahi:
-- @c-development
+- '@c-development'
 - coreutils
 - dnf-plugins-core
 - openssl
