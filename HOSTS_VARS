@@ -29,6 +29,7 @@ packages_to_install_arch:
 - tree-sitter
 - luajit
 - ccls
+- eza
 
 packages_to_install_ubuntu:
 - build-essential
@@ -38,6 +39,7 @@ packages_to_install_ubuntu:
 - nodejs
 - luajit
 - ccls
+- eza
 
 packages_to_install_asahi:
 - '@c-development'
@@ -51,6 +53,7 @@ packages_to_install_asahi:
 - nodejs
 - libtree-sitter
 - luajit
+- eza
 
 #
 # dotfiles repo
